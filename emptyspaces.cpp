@@ -1,6 +1,6 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <cstdlib> // For srand() and rand() for random number generation.
+#include <ctime> // Used to seed the random number generator with the current time.
 using namespace std;
 
 const int SIZE = 9;  // Size of the Sudoku board
@@ -33,8 +33,8 @@ void createEmptySpaces(int board[SIZE][SIZE], int emptyCells)
     int count = 0;
     while (count < emptyCells) 
     {
-        int row = rand() % SIZE;
-        int col = rand() % SIZE;
+        int row = rand() % SIZE; // Generates a random row index between 0 and 8
+        int col = rand() % SIZE; // Generates a random column index between 0 and 8
 
         // Only create an empty space if the cell is not already empty
         if (board[row][col] != 0) 
