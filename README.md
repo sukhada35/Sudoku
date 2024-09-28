@@ -1,34 +1,58 @@
-# Sudoku
-Problem Statement:
+# Sudoku Solver using Backtracking
 
-Given a 9x9 incomplete sudoku, solve it such that it becomes valid sudoku. Valid sudoku has the following properties.
+## **Introduction**
+This project solves an incomplete 9x9 Sudoku puzzle using the backtracking algorithm. The goal is to fill the board such that every row, column, and 3x3 sub-grid contains the digits 1 to 9 exactly once.
 
-         1. All the rows should be filled with numbers(1 - 9) exactly once.
+## **Problem Statement**
+Given a 9x9 Sudoku grid, the task is to complete the puzzle while adhering to the following rules:
 
-         2. All the columns should be filled with numbers(1 - 9) exactly once.
+1. **Each row** must contain the digits 1 to 9, without repetition.
+2. **Each column** must contain the digits 1 to 9, without repetition.
+3. **Each 3x3 sub-grid** must contain the digits 1 to 9, without repetition.
 
-         3. Each 3x3 submatrix should be filled with numbers(1 - 9) exactly once.
+*Note*: The character `'.'` represents an empty cell that needs to be filled.
 
-Note: Character '.' indicates empty cell.
+## **Approach**
 
-Intuition:
+### **Intuition**
+The problem can be tackled using **backtracking**, a method of trying all possible solutions for each empty cell. The algorithm recursively fills the grid by trying every valid number in each empty cell. If at any point the board becomes invalid, it backtracks to the previous state and tries a different number.
 
-Since we have to fill the empty cells with available possible numbers and we can also have multiple solutions, the main intuition is to try every possible way of filling the empty cells. And the more correct way to try all possible solutions is to use recursion. In each call to the recursive function, we just try all the possible numbers for a particular cell and transfer the updated board to the next recursive call.
+### **Recursive Solution**
+1. **Recursion and Board Traversal**:  
+   The algorithm traverses the Sudoku grid cell by cell. When an empty cell is encountered, it attempts to place digits (1-9) in that cell.
 
-Approach:
+2. **Validity Check**:  
+   For each number placed, the algorithm checks if the board remains valid based on the Sudoku rules. If the number violates any rules, it is discarded, and another number is tried. This validation ensures that the solution adheres to the row, column, and sub-grid constraints.
 
-Let’s see the step by step approach. Our main recursive function(solve()) is going to just do a plain matrix traversal of the sudoku board. When we find an empty cell, we pause and try to put all available numbers(1 - 9) in that particular empty cell.
- We need another loop to do that. But wait, we forgot one thing - the board has to satisfy all the conditions, right? So, for that we have another function(isValid()) which will check whether the number we have inserted into that empty cell will not violate any conditions.
- If it is violating, we try with the next number. If it is not, we call the same function recursively, but this time with the updated state of the board. Now, as usual it tries to fill the remaining cells in the board in the same way.
-Now we'll come to the returning values. If at any point we cannot insert any numbers from 1 - 9 in a particular cell, it means the current state of the board is wrong and we need to backtrack. An important point to follow is, we need to return false to let the parent function(which is called this function) know that we cannot fill this way. This will serve as a hint to that function, that it needs to try with the next possible number. Refer to the picture below.
+3. **Backtracking**:  
+   If no valid number can be placed in a particular cell, the algorithm backtracks to the previous cell and tries a different number. This process continues until the board is completely filled or all possibilities are exhausted.
+
+### **Board Validation**
+To ensure the board remains valid after placing a number, the algorithm checks three conditions for every cell:
+
+1. **Row Validation**: The number should not already exist in the current row.
+2. **Column Validation**: The number should not already exist in the current column.
+3. **Sub-grid Validation**: The number should not already exist in the corresponding 3x3 sub-grid.
+
+These checks are performed for each cell to maintain the integrity of the Sudoku puzzle.
+
+### **Early Termination**
+If a valid solution is found at any point, the algorithm terminates early and returns the completed board.
 
 
- If a recursive call returns true, we can assume that we found one possible way of filling and we simply do an early return.
-Validating Board
+## **How It Works**
+The algorithm works by:
 
- Now, let's see how we are validating the sudoku board. After determining a number for a cell(at i'th row, j'th col), we try to check the validity. As we know, a valid sudoku needs to satisfy 3 conditions, we can use three loops. But we can do within a single loop itself. Let's try to understand that.
-We loop from 0 to 8 and check the values - board[i][col](1st condition) and board[row][i](2nd condition), whether the number is already included. For the 3rd condition - the expression (3 * (row / 3) + i / 3) evaluates to the row numbers of that 3x3 submatrix and the expression (3 * (col / 3) + i % 3) evaluates to the column numbers.
-For eg, if row= 5 and col= 3, the cells visited are
+1. **Identifying empty cells** in the grid.
+2. **Trying all possible numbers** (1-9) for each empty cell.
+3. **Checking the validity** of each number based on Sudoku rules.
+4. **Using backtracking** to explore all possible solutions.
+5. **Terminating** when a valid solution is found or all possibilities are exhausted.
 
+## **Conclusion**
+This backtracking-based Sudoku solver efficiently fills incomplete puzzles while ensuring the final board adheres to Sudoku rules. By trying all possible configurations and backtracking when necessary, the algorithm guarantees that the solution found is valid.
 
-It covers all the cells in the sub-matrix.
+## **Future Improvements**
+- Optimize the algorithm further by pre-filling numbers that are deterministically correct based on current board constraints.
+- Implement a graphical interface for easier interaction with the Sudoku solver.
+
