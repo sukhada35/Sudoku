@@ -56,3 +56,12 @@ This backtracking-based Sudoku solver efficiently fills incomplete puzzles while
 - Optimize the algorithm further by pre-filling numbers that are deterministically correct based on current board constraints.
 - Implement a graphical interface for easier interaction with the Sudoku solver.
 
+## **Credits**
+This project was developed by:
+
+- **Sukhada Gulhane** - [GitHub](https://github.com/sukhada35), Email: svvgulhane@gmail.com
+- **Ashmit Jain** - [GitHub](https://github.com/ashmit27j), Email: ashmit27j@gmail.com
+
+Feel free to reach out to us if you have any questions or suggestions!
+
+
