@@ -28,7 +28,7 @@ int main()
     int option;
     cout << "Choose an option:\n1. Creator\n2. Checker\n3. EXIT\n";
     cin >> option;
-
+    
     switch (option)
     {
     case 1:
@@ -62,14 +62,12 @@ int main()
             goto userChoice;
         }
         // Create empty spaces in the correct Sudoku board
-        // createEmptySpaces(board, emptyCells);
         createEmptySpaces(board, emptyCells);
         // Display the board with empty spaces to the user
         cout << "\nSudoku Puzzle for the User to Solve:\n";
         printBoard(board);
-        //fallsthrough to checker directly, hence no break statement
+        break;
     case 2:
-        
         //Checker
         break;
     case 3:
@@ -83,45 +81,58 @@ int main()
  
     return 0;
     //====================================================================================================SOLVER
-    // if (solveSudoku(board)) {
-    //     printBoard(board);
-    // } else {
-    //     cout << "No solution exists." << endl;
-    // }
+    // Example Sudoku board (0 represents empty cells)
+    vector<vector<int>> board = {
+        {5, 3, 0, 0, 7, 0, 0, 0, 0},
+        {6, 0, 0, 1, 9, 5, 0, 0, 0},
+        {0, 9, 8, 0, 0, 0, 0, 6, 0},
+        {8, 0, 0, 0, 6, 0, 0, 0, 3},
+        {4, 0, 0, 8, 0, 3, 0, 0, 1},
+        {7, 0, 0, 0, 2, 0, 0, 0, 6},
+        {0, 6, 0, 0, 0, 0, 2, 8, 0},
+        {0, 0, 0, 4, 1, 9, 0, 0, 5},
+        {0, 0, 0, 0, 8, 0, 0, 7, 9}
+    };
 
-    // return 0;
-    // //====================================================================================================SUDOKU CHECKER
-    // int userBoard[9][9];    // To store user input board
-    // // int correctBoard[9][9]; // To store the correct solved board
-    // // Input the user board
-    // cout << "Enter the User Sudoku Board (9x9):\n";
-    // for (int i = 0; i < 9; i++) 
-    // {
-    //     for (int j = 0; j < 9; j++) 
-    //     {
-    //         cin >> userBoard[i][j];
-    //     }
-    // }
+    if (solveSudoku(board)) {
+        printBoard(board);
+    } else {
+        cout << "No solution exists." << endl;
+    }
 
-    // // Input the correct board
-    // cout << "Enter the Correct Sudoku Board (9x9):\n";
-    // for (int i = 0; i < 9; i++) 
-    // {
-    //     for (int j = 0; j < 9; j++) 
-    //     {
-    //         cin >> correctBoard[i][j];
-    //     }
-    // }
+    return 0;
+    //====================================================================================================SUDOKU CHECKER
+    int userBoard[9][9];    // To store user input board
+    // int correctBoard[9][9]; // To store the correct solved board
+    // Input the user board
+    cout << "Enter the User Sudoku Board (9x9):\n";
+    for (int i = 0; i < 9; i++) 
+    {
+        for (int j = 0; j < 9; j++) 
+        {
+            cin >> userBoard[i][j];
+        }
+    }
 
-    // // Compare the two boards
-    // if (compareBoards(userBoard, correctBoard)) 
-    // {
-    //     cout << "Correct\n"; // If the boards match
-    // } 
-    // else 
-    // {
-    //     cout << "Wrong\n";   // If the boards don't match
-    // }
+    // Input the correct board
+    cout << "Enter the Correct Sudoku Board (9x9):\n";
+    for (int i = 0; i < 9; i++) 
+    {
+        for (int j = 0; j < 9; j++) 
+        {
+            cin >> correctBoard[i][j];
+        }
+    }
 
-    // return 0;
+    // Compare the two boards
+    if (compareBoards(userBoard, correctBoard)) 
+    {
+        cout << "Correct\n"; // If the boards match
+    } 
+    else 
+    {
+        cout << "Wrong\n";   // If the boards don't match
+    }
+
+    return 0;
 }

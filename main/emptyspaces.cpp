@@ -2,9 +2,7 @@
 #include <cstdlib> // For srand() and rand() for random number generation.
 #include <ctime> // Used to seed the random number generator with the current time.
 using namespace std;
-
-const int SIZE = 9;  // Size of the Sudoku board
-
+// const int SIZE = 9; 
 // Function to print the Sudoku board
 void printBoard(int board[SIZE][SIZE]) 
 {
@@ -25,8 +23,8 @@ void printBoard(int board[SIZE][SIZE])
     }
 }
 
-// Function to randomly create empty spaces in the board
-void createEmptySpaces(int board[SIZE][SIZE], int emptyCells) 
+//Function to randomly create empty spaces in the board
+void createEmptySpaces(vector<vector<int>>& board, int emptyCells) 
 {
     srand(time(0));  // Seed for random number generation
 
