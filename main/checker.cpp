@@ -1,8 +1,9 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 // Function to compare two Sudoku boards
-bool compareBoards(int userBoard[9][9], int correctBoard[9][9]) 
+bool compareBoards(const vector<vector<int>>& userBoard, const vector<vector<int>>& correctBoard) 
 {
     for (int i = 0; i < 9; i++)     // Traverse through each cell of the 9x9 board
     {
