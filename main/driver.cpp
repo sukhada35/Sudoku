@@ -11,6 +11,13 @@ const int SIZE = 9;
 
 using namespace std;
 
+char toUpper(char c) {
+    if (c >= 'a' && c <= 'z') {
+        return c - 'a' + 'A';
+    }
+    return c;
+}
+
 int main() 
 {
     // srand(time(0));
@@ -43,7 +50,7 @@ int main()
             correctBoard = board; // Save the correct board
             cout << "Enter the difficulty:\nE for Easy\nM for Medium\nH for Hard\n";
             cin >> choice;
-
+            choice = toUpper(choice);
             switch (choice) {
                 case 'E':
                     emptyCells = 25;
