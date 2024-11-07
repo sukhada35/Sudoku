@@ -1,24 +1,31 @@
 #include <iostream>
 #include <vector>
-#include <cstdlib>
-#include <ctime>
+// #include <cstdlib>
+// #include <ctime>
 
 using namespace std;
 
-bool isSafe(vector<vector<int>>& board, int row, int col, int num) {
-    for (int x = 0; x < SIZE; x++) {
+// Function to check if placing a number `num` at position (row, col) is safe
+bool isSafe(vector<vector<int>>& board, int row, int col, int num) 
+{
+    for (int x = 0; x < SIZE; x++) 
+    {
         if (board[row][x] == num || board[x][col] == num) return false;
     }
 
+// Check the 3x3 subgrid that contains the position (row, col)
     int startRow = row - row % 3, startCol = col - col % 3;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
+    for (int i = 0; i < 3; i++) 
+    {
+        for (int j = 0; j < 3; j++) 
+        {
             if (board[i + startRow][j + startCol] == num) return false;
         }
     }
     return true;
 }
 
+// Function to solve the Sudoku puzzle using backtracking
 bool fillSudoku(vector<vector<int>>& board, int row, int col) {
     if (row == SIZE - 1 && col == SIZE) return true;
     if (col == SIZE) { row++; col = 0; }
