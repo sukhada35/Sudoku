@@ -1,8 +1,8 @@
 const int SIZE = 9;
 #include <iostream>
 #include <vector>
-#include <cstdlib>
-#include <ctime>
+#include <cstdlib> // For srand() and rand() for random number generation.
+#include <ctime> 
 // Include your additional headers for Sudoku functionality
 #include "emptyspaces.cpp"
 #include "solver.cpp"
@@ -11,8 +11,10 @@ const int SIZE = 9;
 
 using namespace std;
 
-char toUpper(char c) {
-    if (c >= 'a' && c <= 'z') {
+char toUpper(char c) 
+{
+    if (c >= 'a' && c <= 'z') 
+    {
         return c - 'a' + 'A';
     }
     return c;
@@ -49,13 +51,14 @@ void giveHint(vector<vector<int>>& board, vector<pair<int, int>>& emptyCells, ve
 //     }
 // }
 
-vector<pair<int, int>> findEmptySpaces(const vector<vector<int>>& board) {
+vector<pair<int, int>> findEmptySpaces(const vector<vector<int>>& board) 
+{
     vector<pair<int, int>> emptyCells;  // Vector to store coordinates of empty cells
     // Loop through the board to find empty cells (cells with value 0)
     for (int row = 0; row < SIZE; ++row) {
         for (int col = 0; col < SIZE; ++col) {
             if (board[row][col] == 0) {  // If the cell is empty
-                emptyCells.push_back(make_pair(row, col));  // Add its coordinates to the list
+                emptyCells.push_back(make_pair(row, col));  // Add its coordinates to the list 
             }
         }
     }
@@ -63,10 +66,12 @@ vector<pair<int, int>> findEmptySpaces(const vector<vector<int>>& board) {
 }
 
 // Main function to drive the game
-int main() {
+int main() 
+{
     srand(time(0));  // Seed for random number generation
 
-    while (true) {
+    while (true) 
+    {
         vector<vector<int>> board(SIZE, vector<int>(SIZE, 0)); // Initialize board
         vector<vector<int>> correctBoard(SIZE, vector<int>(SIZE, 0)); // Initialize correct board
         vector<vector<int>> userBoard(SIZE, vector<int>(SIZE, 0)); // Initialize userBoard
@@ -76,8 +81,8 @@ int main() {
         vector<pair<int, int>> emptyCells = findEmptySpaces(board);
         char hintChoice;    
 
-        int seed = rand() % SIZE + 1;
-        board[0][0] = seed;
+        int seed = rand() % SIZE + 1; // Set a random number (between 1 and 9) as the seed in the top-left cell
+        board[0][0] = seed; // Place the seed in the top-left cell
 
         char choice;
         int emptyCellsCount = 0;
@@ -119,14 +124,17 @@ int main() {
         printBoard(board);  // Display the initial puzzle
 
         // Game Loop for User Input ====================================================================================
-        while (true) {
+        while (true) 
+        {
             // Ask if the user wants a hint
-            if (hintCounter > 0) {
+            if (hintCounter > 0) 
+            {
                 cout << "You have " << hintCounter << " hint(s) remaining.\n";
                 cout << "Do you want a hint? (y/n): ";
                 cin >> hintChoice;
                 // Provide a hint if the user chooses 'y' or 'Y'
-                if (hintChoice == 'y' || hintChoice == 'Y') {
+                if (hintChoice == 'y' || hintChoice == 'Y') 
+                {
                     giveHint(board, emptyCells, correctBoard);  // Provide a hint by revealing an empty cell
                     hintCounter--;  // Decrement the hint counter
                 }

@@ -10,7 +10,7 @@ bool isSafe(vector<vector<int>>& board, int row, int col, int num)
 {
     for (int x = 0; x < SIZE; x++) 
     {
-        if (board[row][x] == num || board[x][col] == num) return false;
+        if (board[row][x] == num || board[x][col] == num) return false; // Check row and column
     }
 
 // Check the 3x3 subgrid that contains the position (row, col)
@@ -26,14 +26,17 @@ bool isSafe(vector<vector<int>>& board, int row, int col, int num)
 }
 
 // Function to solve the Sudoku puzzle using backtracking
-bool fillSudoku(vector<vector<int>>& board, int row, int col) {
-    if (row == SIZE - 1 && col == SIZE) return true;
-    if (col == SIZE) { row++; col = 0; }
+bool fillSudoku(vector<vector<int>>& board, int row, int col) 
+{
+    if (row == SIZE - 1 && col == SIZE) return true; // If we have reached the end of the board
+    if (col == SIZE) { row++; col = 0; } // Move to the next row if we have reached the end of the column
 
-    if (board[row][col] != 0) return fillSudoku(board, row, col + 1);
+    if (board[row][col] != 0) return fillSudoku(board, row, col + 1); // Skip the filled cells
 
-    for (int num = 1; num <= SIZE; num++) {
-        if (isSafe(board, row, col, num)) {
+    for (int num = 1; num <= SIZE; num++) 
+    {
+        if (isSafe(board, row, col, num)) 
+        {
             board[row][col] = num;
             if (fillSudoku(board, row, col + 1)) return true;
             board[row][col] = 0;
