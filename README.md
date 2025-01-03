@@ -46,7 +46,7 @@ The algorithm works by:
 1. **Identifying empty cells** in the grid.
 2. **Trying all possible numbers** (1-9) for each empty cell.
 3. **Checking the validity** of each number based on Sudoku rules.
-4. **Using backtracking** to explore all possible solutions.
+4. **Using backtracking** to explore all possible solutions...
 5. **Terminating** when a valid solution is found or all possibilities are exhausted.
 
 ## **Conclusion**
